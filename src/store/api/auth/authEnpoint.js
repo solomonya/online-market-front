@@ -13,7 +13,17 @@ const authEndpoint = onlineMarketApi.injectEndpoints({
         },
       }),
     }),
+    register: build.mutation({
+      query: ({ email, password }) => ({
+        url: "/auth/register/",
+        method: HttpMethods.POST,
+        body: {
+          email,
+          password,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useAuthMutation } = authEndpoint;
+export const { useAuthMutation, useRegisterMutation } = authEndpoint;

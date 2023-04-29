@@ -1,4 +1,4 @@
-import { AuthForm } from "@/features/auth";
+import { AuthForm, RegisterForm } from "@/features/auth";
 import {
   Container,
   Heading,
@@ -30,7 +30,7 @@ const AuthPage = () => {
                 <AuthForm />
               </TabPanel>
               <TabPanel>
-                <p>two!</p>
+                <RegisterForm />
               </TabPanel>
             </TabPanels>
           </Tabs>
