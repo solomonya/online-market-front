@@ -9,8 +9,14 @@ const productsEndpoint = onlineMarketApi.injectEndpoints({
         method: HttpMethods.GET,
       }),
     }),
+    productById: build.query({
+      query: ({ product_id }) => ({
+        url: `/products/${product_id}`,
+        method: HttpMethods.GET,
+      }),
+    }),
   }),
   overrideExisting: true,
 });
 
-export const { useProductsListQuery } = productsEndpoint;
+export const { useProductsListQuery, useProductByIdQuery } = productsEndpoint;

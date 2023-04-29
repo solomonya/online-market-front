@@ -1,12 +1,10 @@
 import { ShowList } from "@/components";
-import { selectProductsIdsFromCart } from "@/store/slices/cart/cartSlice";
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import { ProductInCart } from "./ProductInCart";
 
 const CartMenu = () => {
-  const productsInCart = useSelector(selectProductsIdsFromCart);
-
+  const productsInCart = useSelector(state => state.cart.productsQuantity);
 
   return (
     <Menu>
@@ -14,13 +12,14 @@ const CartMenu = () => {
       <MenuList>
         <ShowList list={productsInCart}>
           {
-            (product_id) => (
+            ({ product_id, quantity }) => (
               <MenuItem key={product_id}>
-                <ProductInCart product_id={product_id} />
+                <ProductInCart product_id={product_id} quantity={quantity} />
               </MenuItem>
             )
           }
         </ShowList>
+        <Button>Купить</Button>
       </MenuList>
     </Menu>
   );
