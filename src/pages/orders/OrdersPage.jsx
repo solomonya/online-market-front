@@ -25,10 +25,10 @@ const OrdersPage = () => {
     });
     setTimeout(() => {
       navigate(Pathnames.ROOT);
-    }, 4000)
+    }, 4000);
   };
 
-  if(order.status === 'DELIVERY') 
+  if (order.status === "DELIVERY")
     return (
       <Container p={10}>
         <Center>

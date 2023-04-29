@@ -1,4 +1,5 @@
-import { ShowSwitch } from "@/components";
+import { ShowIf, ShowSwitch } from "@/components";
+import { isAuthSelect } from "@/store/slices/auth/authSlice";
 import { addToCart } from "@/store/slices/cart/cartSlice";
 import {
   Card,
@@ -12,10 +13,11 @@ import {
   Button,
   Image,
 } from "@chakra-ui/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const ProductCard = (product) => {
   const dispatch = useDispatch();
+  const isAuth = useSelector(isAuthSelect);
 
   const onAddToCart = () => {
     const payload = { product_id: product.product_id, quantity: 1 };
@@ -42,18 +44,20 @@ const ProductCard = (product) => {
         </Stack>
       </CardBody>
       <Divider />
-      <CardFooter>
-        <ButtonGroup spacing="2">
-          <ShowSwitch conditions={[product.isProductInCart]}>
-            <Text size={"xl"} fontWeight={600} color={"green"}>
-              Товар в коризне.
-            </Text>
-            <Button variant="solid" colorScheme="green" onClick={onAddToCart}>
-              Добавить к корзину
-            </Button>
-          </ShowSwitch>
-        </ButtonGroup>
-      </CardFooter>
+      <ShowIf condition={isAuth}>
+        <CardFooter>
+          <ButtonGroup spacing="2">
+            <ShowSwitch conditions={[product.isProductInCart]}>
+              <Text size={"xl"} fontWeight={600} color={"green"}>
+                Товар в коризне.
+              </Text>
+              <Button variant="solid" colorScheme="green" onClick={onAddToCart}>
+                Добавить к корзину
+              </Button>
+            </ShowSwitch>
+          </ButtonGroup>
+        </CardFooter>
+      </ShowIf>
     </Card>
   );
 };

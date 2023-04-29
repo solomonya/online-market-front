@@ -1,5 +1,14 @@
-import { ShowList } from "@/components";
-import { Button, Center, Menu, MenuButton, MenuItem, MenuList, useToast } from "@chakra-ui/react";
+import { ShowIf, ShowList, ShowSwitch } from "@/components";
+import {
+  Button,
+  Center,
+  Heading,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  useToast,
+} from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductInCart } from "./ProductInCart";
 import { useCreateOrderMutation } from "@/store/api";
@@ -45,20 +54,29 @@ const CartMenu = () => {
 
   return (
     <Menu>
-      <MenuButton as={Button}>Корзина</MenuButton>
+      <MenuButton as={Button} colorScheme={"green"}>
+        Корзина
+      </MenuButton>
       <MenuList>
-        <ShowList list={productsInCart}>
-          {({ product_id, quantity }) => (
-            <MenuItem key={product_id}>
-              <ProductInCart product_id={product_id} quantity={quantity} />
-            </MenuItem>
-          )}
-        </ShowList>
-        <Center py={3}>
-          <Button isLoading={createOrderReq.isLoading} onClick={onBuy}>
-            Купить
-          </Button>
-        </Center>
+        <ShowSwitch conditions={[productsInCart.length > 0]}>
+          <>
+            <ShowList list={productsInCart}>
+              {({ product_id, quantity }) => (
+                <MenuItem key={product_id}>
+                  <ProductInCart product_id={product_id} quantity={quantity} />
+                </MenuItem>
+              )}
+            </ShowList>
+            <Center py={3}>
+              <Button isLoading={createOrderReq.isLoading} onClick={onBuy}>
+                Купить
+              </Button>
+            </Center>
+          </>
+          <Heading size={"xl"} p={3}>
+            Корзина пуста!
+          </Heading>
+        </ShowSwitch>
       </MenuList>
     </Menu>
   );

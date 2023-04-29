@@ -8,7 +8,7 @@ const paymentsEndpoint = onlineMarketApi.injectEndpoints({
         url: `/payments/pay/${order_id}`,
         method: HttpMethods.POST,
       }),
-      invalidatesTags: ["PAYMENT"]
+      invalidatesTags: ["PAYMENT"],
     }),
   }),
   overrideExisting: true,

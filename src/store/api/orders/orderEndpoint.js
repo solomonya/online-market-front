@@ -8,7 +8,7 @@ const orderEndpoint = onlineMarketApi.injectEndpoints({
         url: `/orders/${payload.id}`,
         method: HttpMethods.GET,
       }),
-      providesTags: ["PAYMENT"]
+      providesTags: ["PAYMENT"],
     }),
     createOrder: build.mutation({
       query: (payload) => ({

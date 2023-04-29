@@ -1,3 +1,4 @@
+import { ShowIf } from "@/components";
 import { useProductByIdQuery } from "@/store/api/products/productsEndpoint";
 import { decreaseCartQuantity, increaseCartQuantity } from "@/store/slices/cart/cartSlice";
 import { Button, Container, Flex, Text } from "@chakra-ui/react";
@@ -20,12 +21,15 @@ const ProductInCart = ({ product_id, quantity }) => {
       <Flex justifyContent={"space-between"}>
         <Text>{product.name}</Text>
         <Flex alignItems={"center"} gap={2}>
+          <ShowIf condition={quantity > 1}>
+            <Button size={"sm"} onClick={onDecrease}>
+              -
+            </Button>
+          </ShowIf>
+
+          <Text>{quantity}</Text>
           <Button size={"sm"} onClick={onIncrease}>
             +
-          </Button>
-          <Text>{quantity}</Text>
-          <Button size={"sm"} onClick={onDecrease}>
-            -
           </Button>
         </Flex>
       </Flex>
