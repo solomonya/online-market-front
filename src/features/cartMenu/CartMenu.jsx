@@ -8,16 +8,16 @@ import { Pathnames } from "@/utils/constants";
 import { clearCart } from "@/store/slices/cart/cartSlice";
 
 const CartMenu = () => {
-  const productsInCart = useSelector(state => state.cart.productsQuantity);
-  const [createOrder,createOrderReq] = useCreateOrderMutation();
-  
+  const productsInCart = useSelector((state) => state.cart.productsQuantity);
+  const [createOrder, createOrderReq] = useCreateOrderMutation();
+
   const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const onBuy = async () => {
     const payload = {
-      items: productsInCart
+      items: productsInCart,
     };
     try {
       const { createdOrder } = await createOrder(payload).unwrap();
@@ -28,11 +28,11 @@ const CartMenu = () => {
         duration: 4000,
         isClosable: true,
       });
-      dispatch(clearCart());      
+      dispatch(clearCart());
       setTimeout(() => {
-        navigate(generatePath(Pathnames.ORDER_ID, { id: createdOrder.order_id }))
-      }, 3000)
-    } catch(e) {
+        navigate(generatePath(Pathnames.ORDER_ID, { id: createdOrder.order_id }));
+      }, 3000);
+    } catch (e) {
       toast({
         title: "Ошибка при создании заказа",
         description: "Повторите заново",
@@ -48,19 +48,14 @@ const CartMenu = () => {
       <MenuButton as={Button}>Корзина</MenuButton>
       <MenuList>
         <ShowList list={productsInCart}>
-          {
-            ({ product_id, quantity }) => (
-              <MenuItem key={product_id}>
-                <ProductInCart product_id={product_id} quantity={quantity} />
-              </MenuItem>
-            )
-          }
+          {({ product_id, quantity }) => (
+            <MenuItem key={product_id}>
+              <ProductInCart product_id={product_id} quantity={quantity} />
+            </MenuItem>
+          )}
         </ShowList>
         <Center py={3}>
-          <Button 
-            isLoading={createOrderReq.isLoading} 
-            onClick={onBuy}
-          >
+          <Button isLoading={createOrderReq.isLoading} onClick={onBuy}>
             Купить
           </Button>
         </Center>

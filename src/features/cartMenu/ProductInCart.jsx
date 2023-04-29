@@ -9,21 +9,24 @@ const ProductInCart = ({ product_id, quantity }) => {
   const product = productReq ? productReq[0] : {};
 
   const onIncrease = () => {
-    dispatch(increaseCartQuantity({ product_id }))
+    dispatch(increaseCartQuantity({ product_id }));
   };
   const onDecrease = () => {
-    dispatch(decreaseCartQuantity({ product_id }))
+    dispatch(decreaseCartQuantity({ product_id }));
   };
 
-  
   return (
     <Container>
       <Flex justifyContent={"space-between"}>
         <Text>{product.name}</Text>
         <Flex alignItems={"center"} gap={2}>
-          <Button size={"sm"} onClick={onIncrease}>+</Button>
+          <Button size={"sm"} onClick={onIncrease}>
+            +
+          </Button>
           <Text>{quantity}</Text>
-          <Button size={"sm"} onClick={onDecrease}>-</Button>
+          <Button size={"sm"} onClick={onDecrease}>
+            -
+          </Button>
         </Flex>
       </Flex>
     </Container>

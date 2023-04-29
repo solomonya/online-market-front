@@ -3,6 +3,13 @@ import { HttpMethods } from "../httpMethods";
 
 const orderEndpoint = onlineMarketApi.injectEndpoints({
   endpoints: (build) => ({
+    getOrderById: build.query({
+      query: (payload) => ({
+        url: `/orders/${payload.id}`,
+        method: HttpMethods.GET,
+      }),
+      providesTags: ["PAYMENT"]
+    }),
     createOrder: build.mutation({
       query: (payload) => ({
         url: "/orders/",
@@ -13,4 +20,4 @@ const orderEndpoint = onlineMarketApi.injectEndpoints({
   }),
 });
 
-export const { useCreateOrderMutation } = orderEndpoint;
+export const { useCreateOrderMutation, useGetOrderByIdQuery } = orderEndpoint;

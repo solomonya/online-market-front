@@ -13,6 +13,7 @@ const onlineMarketApi = createApi({
   reducerPath: "onlineMarketApi",
   baseQuery,
   endpoints: () => ({}),
+  tagTypes: ["PAYMENT"]
 });
 
 export { onlineMarketApi };

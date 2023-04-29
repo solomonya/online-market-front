@@ -9,7 +9,6 @@ import { useSelector } from "react-redux";
 const ProductsListPage = () => {
   const { data: productsList, isLoading } = useProductsListQuery();
   const productsInCartIds = useSelector(selectProductsIdsFromCart);
-  
 
   return (
     <Grid autoRows={true} gap={5}>
