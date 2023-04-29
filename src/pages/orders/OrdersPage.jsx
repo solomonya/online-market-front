@@ -15,17 +15,30 @@ const OrdersPage = () => {
   const [pay, payReqState] = usePayOrderMutation();
 
   const onPay = async () => {
-    await pay({ order_id: id });
-    toast({
-      title: "Заказ успешно оплачен!",
-      description: "Ожидайте когда курьер свяжется с вами",
-      status: "success",
-      duration: 4000,
-      isClosable: true,
-    });
-    setTimeout(() => {
-      navigate(Pathnames.ROOT);
-    }, 4000);
+    try {
+      const res = await pay({ order_id: id });
+
+      if (res.error.status === 400) throw new Error();
+
+      toast({
+        title: "Заказ успешно оплачен!",
+        description: "Ожидайте когда курьер свяжется с вами",
+        status: "success",
+        duration: 4000,
+        isClosable: true,
+      });
+      setTimeout(() => {
+        navigate(Pathnames.ROOT);
+      }, 4000);
+    } catch (e) {
+      toast({
+        title: "Ошибка при оплате заказа",
+        description: "Убедитесь что на балансе достаточно средств",
+        status: "error",
+        duration: 4000,
+        isClosable: true,
+      });
+    }
   };
 
   if (order.status === "DELIVERY")

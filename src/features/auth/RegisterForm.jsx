@@ -20,8 +20,8 @@ const RegisterForm = () => {
   const onSubmitRegister = async () => {
     try {
       const payload = {
-        email, 
-        password
+        email,
+        password,
       };
       await register(payload);
       reset();
@@ -32,7 +32,7 @@ const RegisterForm = () => {
         duration: 4000,
         isClosable: true,
       });
-    } catch(e) {
+    } catch (e) {
       toast({
         title: "Ошибка регистрации",
         description: "Попробуйте заново.",
@@ -43,7 +43,7 @@ const RegisterForm = () => {
       reset();
     }
   };
-  
+
   return (
     <form>
       <Stack spacing={5}>
@@ -60,7 +60,11 @@ const RegisterForm = () => {
           <Text>Пароль</Text>
           <Input type="password" value={password} onInput={onInputPassword} />
         </Stack>
-        <Button colorScheme="green" onClick={onSubmitRegister} isLoading={registerReqState.isLoading}>
+        <Button
+          colorScheme="green"
+          onClick={onSubmitRegister}
+          isLoading={registerReqState.isLoading}
+        >
           Зарегистрироваться
         </Button>
       </Stack>
