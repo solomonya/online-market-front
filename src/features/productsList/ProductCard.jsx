@@ -12,6 +12,9 @@ import {
   ButtonGroup,
   Button,
   Image,
+  Container,
+  Badge,
+  Flex,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -33,14 +36,18 @@ const ProductCard = (product) => {
           borderRadius="lg"
         />
         <Stack mt={6} spacing={3}>
-          <Stack spacing={1}>
-            <Heading size="md">{product.name}</Heading>
-            <Text>{product.provider_name}</Text>
-          </Stack>
+          <Flex alignItems={"center"} justifyContent={"space-between"}>
+            <Stack spacing={2}>
+              <Heading size="md">{product.name}</Heading>
+              <Badge w={"fit-content"} colorScheme={"green"}>
+                {product.provider_name}
+              </Badge>
+            </Stack>
+            <Text color="green.600" fontSize="2xl">
+              ${product.price}
+            </Text>
+          </Flex>
           <Text>{product.description}</Text>
-          <Text color="green.600" fontSize="2xl">
-            ${product.price}
-          </Text>
         </Stack>
       </CardBody>
       <Divider />

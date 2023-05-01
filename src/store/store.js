@@ -15,6 +15,7 @@ import storage from "redux-persist/lib/storage";
 import { authReducer } from "./slices/auth/authSlice";
 import { onlineMarketApi } from "./api/api";
 import { cartReducer } from "./slices/cart/cartSlice";
+import { productsReducer } from "./slices/productsFilters/productsFiltersSlice";
 
 const persistConfig = {
   key: "root",
@@ -28,6 +29,7 @@ const rootReducer = () => {
     [onlineMarketApi.reducerPath]: onlineMarketApi.reducer,
     auth: authReducer,
     cart: cartReducer,
+    products: productsReducer,
   });
 };
 
