@@ -18,7 +18,7 @@ const OrdersPage = () => {
     try {
       const res = await pay({ order_id: id });
 
-      if (res.error.status === 400) throw new Error();
+      if (res.error?.status === 400) throw new Error();
 
       toast({
         title: "The order has been successfully paid for!",
