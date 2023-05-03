@@ -13,22 +13,25 @@ const Header = () => {
   const navigate = useNavigate();
   const isAuth = useSelector(isAuthSelect);
 
+
   const onAuth = () => navigate(Pathnames.LOGIN);
   const onLogout = () => dispatch(logout());
 
   return (
-    <header className={styles.header}>
-      <Heading>N2749 & God of the Underworld Store</Heading>
-      <ShowSwitch conditions={[isAuth]}>
-        <Flex alignItems={"center"} gap={3}>
-          <CartMenu />
-          <Button onClick={onLogout}>Sign Out</Button>
-        </Flex>
-        <Button variant={"link"} onClick={onAuth} colorScheme={"green"}>
-          Sign In
-        </Button>
-      </ShowSwitch>
-    </header>
+    <>
+      <header className={styles.header}>
+        <Heading>N2749 & God of the Underworld Store</Heading>
+        <ShowSwitch conditions={[isAuth]}>
+          <Flex alignItems={"center"} gap={3}>
+            <CartMenu />
+            <Button onClick={onLogout}>Sign Out</Button>
+          </Flex>
+          <Button variant={"link"} onClick={onAuth} colorScheme={"green"}>
+            Sign In
+          </Button>
+        </ShowSwitch>
+      </header>
+    </>
   );
 };
 

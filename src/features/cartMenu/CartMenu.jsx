@@ -1,13 +1,16 @@
 import { ShowIf, ShowList, ShowSwitch } from "@/components";
 import {
   Button,
-  Center,
-  Heading,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Text,
   useToast,
+  Stack
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductInCart } from "./ProductInCart";
@@ -15,6 +18,7 @@ import { useCreateOrderMutation } from "@/store/api";
 import { generatePath, useNavigate } from "react-router-dom";
 import { Pathnames } from "@/utils/constants";
 import { clearCart } from "@/store/slices/cart/cartSlice";
+import { useModal } from "@/hooks/useModal";
 
 const CartMenu = () => {
   const productsInCart = useSelector((state) => state.cart.productsQuantity);
@@ -52,33 +56,40 @@ const CartMenu = () => {
     }
   };
 
+  const { isOpen, open, close } = useModal(false);
+
   return (
-    <Menu>
-      <MenuButton as={Button} colorScheme={"green"}>
-        Cart
-      </MenuButton>
-      <MenuList>
-        <ShowSwitch conditions={[productsInCart.length > 0]}>
-          <>
-            <ShowList list={productsInCart}>
-              {({ product_id, quantity }) => (
-                <MenuItem key={product_id}>
-                  <ProductInCart product_id={product_id} quantity={quantity} />
-                </MenuItem>
-              )}
-            </ShowList>
-            <Center py={3}>
-              <Button isLoading={createOrderReq.isLoading} onClick={onBuy}>
+    <>
+      <Button onClick={open} colorScheme="green">Cart</Button>
+      <Modal isOpen={isOpen} onClose={close}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Cart</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <ShowSwitch conditions={[productsInCart.length > 0]}>
+              <Stack spacing={5}>
+                <ShowList list={productsInCart}>
+                  {
+                    ({ product_id, quantity }, index) => (
+                      <ProductInCart index={index} key={product_id} product_id={product_id} quantity={quantity} />
+                    )
+                  }
+                </ShowList>
+              </Stack>
+              <Text fontSize={"2xl"} fontWeight={600} display={"inline-block"} paddingBottom={5}>Cart is empty</Text>
+            </ShowSwitch>
+          </ModalBody>
+          <ShowIf condition={productsInCart.length > 0}>
+            <ModalFooter>
+              <Button colorScheme={"green"} onClick={onBuy} isLoading={createOrderReq.isLoading}>
                 Buy
               </Button>
-            </Center>
-          </>
-          <Heading size={"xl"} p={3}>
-            Cart empty!
-          </Heading>
-        </ShowSwitch>
-      </MenuList>
-    </Menu>
+            </ModalFooter>
+          </ShowIf>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 
