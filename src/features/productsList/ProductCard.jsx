@@ -56,10 +56,10 @@ const ProductCard = (product) => {
           <ButtonGroup spacing="2">
             <ShowSwitch conditions={[product.isProductInCart]}>
               <Text size={"xl"} fontWeight={600} color={"green"}>
-                Товар в коризне.
+                Product in cart
               </Text>
               <Button variant="solid" colorScheme="green" onClick={onAddToCart}>
-                Добавить к корзину
+                Add to cart
               </Button>
             </ShowSwitch>
           </ButtonGroup>

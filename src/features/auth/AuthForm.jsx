@@ -30,8 +30,8 @@ const AuthForm = () => {
       navigate(Pathnames.ROOT);
     } catch (e) {
       toast({
-        title: "Ошибка авторизации",
-        description: "Неправильно введённые логин или пароль.",
+        title: "Auth Error!",
+        description: "Incorrect password or email",
         status: "error",
         duration: 4000,
         isClosable: true,
@@ -43,7 +43,7 @@ const AuthForm = () => {
     <form>
       <Stack spacing={5}>
         <Stack spacing={2}>
-          <Text>Почта</Text>
+          <Text>Email</Text>
           <Input
             placeholder="example@gmail.com"
             type="email"
@@ -52,11 +52,11 @@ const AuthForm = () => {
           />
         </Stack>
         <Stack spacing={2}>
-          <Text>Пароль</Text>
+          <Text>Password</Text>
           <Input type="password" value={password} onInput={onInputPassword} />
         </Stack>
         <Button colorScheme="green" onClick={onSubmitAuth} isLoading={authorizeReqState.isLoading}>
-          Авторизоваться
+          Sign In
         </Button>
       </Stack>
     </form>

@@ -18,14 +18,14 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <Heading>Онлайн магазин</Heading>
+      <Heading>N2749 & God of the Underworld Store</Heading>
       <ShowSwitch conditions={[isAuth]}>
         <Flex alignItems={"center"} gap={3}>
           <CartMenu />
-          <Button onClick={onLogout}>Выйти</Button>
+          <Button onClick={onLogout}>Sign Out</Button>
         </Flex>
         <Button variant={"link"} onClick={onAuth} colorScheme={"green"}>
-          Авторизоваться
+          Sign In
         </Button>
       </ShowSwitch>
     </header>

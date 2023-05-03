@@ -31,8 +31,8 @@ const CartMenu = () => {
     try {
       const { createdOrder } = await createOrder(payload).unwrap();
       toast({
-        title: "Заказ успешно создан",
-        description: "Вас перенаправят на страницу оплаты",
+        title: "Order is successfully created!",
+        description: "You will be redirected to the payment page",
         status: "success",
         duration: 4000,
         isClosable: true,
@@ -43,8 +43,8 @@ const CartMenu = () => {
       }, 3000);
     } catch (e) {
       toast({
-        title: "Ошибка при создании заказа",
-        description: "Повторите заново",
+        title: "Error when creating an order",
+        description: "Repeat again",
         status: "error",
         duration: 4000,
         isClosable: true,
@@ -55,7 +55,7 @@ const CartMenu = () => {
   return (
     <Menu>
       <MenuButton as={Button} colorScheme={"green"}>
-        Корзина
+        Cart
       </MenuButton>
       <MenuList>
         <ShowSwitch conditions={[productsInCart.length > 0]}>
@@ -69,12 +69,12 @@ const CartMenu = () => {
             </ShowList>
             <Center py={3}>
               <Button isLoading={createOrderReq.isLoading} onClick={onBuy}>
-                Купить
+                Buy
               </Button>
             </Center>
           </>
           <Heading size={"xl"} p={3}>
-            Корзина пуста!
+            Cart empty!
           </Heading>
         </ShowSwitch>
       </MenuList>

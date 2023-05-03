@@ -6,8 +6,8 @@ const productsEndpoint = onlineMarketApi.injectEndpoints({
     providersList: build.query({
       query: () => ({
         url: "/products/providers",
-        method: HttpMethods.GET
-      })
+        method: HttpMethods.GET,
+      }),
     }),
     productsList: build.query({
       query: (productsFilters) => ({
@@ -19,7 +19,7 @@ const productsEndpoint = onlineMarketApi.injectEndpoints({
           product_name: productsFilters.productSearch,
           min_price: productsFilters.prices.min,
           max_price: productsFilters.prices.max,
-          provider_name: productsFilters.providerName
+          provider_name: productsFilters.providerName,
         },
       }),
     }),
@@ -33,4 +33,5 @@ const productsEndpoint = onlineMarketApi.injectEndpoints({
   overrideExisting: true,
 });
 
-export const { useProductsListQuery, useProductByIdQuery, useProvidersListQuery } = productsEndpoint;
+export const { useProductsListQuery, useProductByIdQuery, useProvidersListQuery } =
+  productsEndpoint;

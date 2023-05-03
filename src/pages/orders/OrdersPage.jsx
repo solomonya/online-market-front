@@ -21,8 +21,8 @@ const OrdersPage = () => {
       if (res.error.status === 400) throw new Error();
 
       toast({
-        title: "Заказ успешно оплачен!",
-        description: "Ожидайте когда курьер свяжется с вами",
+        title: "The order has been successfully paid for!",
+        description: "Wait for the courier to contact you",
         status: "success",
         duration: 4000,
         isClosable: true,
@@ -32,8 +32,8 @@ const OrdersPage = () => {
       }, 4000);
     } catch (e) {
       toast({
-        title: "Ошибка при оплате заказа",
-        description: "Убедитесь что на балансе достаточно средств",
+        title: "Error when paying for an order",
+        description: "Make sure that there are enough funds on the balance",
         status: "error",
         duration: 4000,
         isClosable: true,
@@ -45,7 +45,7 @@ const OrdersPage = () => {
     return (
       <Container p={10}>
         <Center>
-          <Heading>Заказ успешно оплачен!</Heading>
+          <Heading>The order has been successfully paid for!</Heading>
         </Center>
       </Container>
     );
@@ -53,8 +53,8 @@ const OrdersPage = () => {
   return (
     <Container p={10}>
       <Stack spacing={5}>
-        <Heading>Заказ №{id}</Heading>
-        <Heading>Город: {order.location}</Heading>
+        <Heading>Order №{id}</Heading>
+        <Heading>City: {order.location}</Heading>
         <Button
           variant={"solid"}
           colorScheme={"green"}
@@ -62,7 +62,7 @@ const OrdersPage = () => {
           isLoading={payReqState.isLoading}
           disabled={isLoading}
         >
-          Оплатить ${order.total}
+          Pay ${order.total}
         </Button>
       </Stack>
     </Container>

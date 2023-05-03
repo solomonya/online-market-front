@@ -26,16 +26,16 @@ const RegisterForm = () => {
       await register(payload);
       reset();
       toast({
-        title: "Вы успешно авторизовались!",
-        description: "Можете авторизоваться и совершить покупки.",
+        title: "You have successfully logged in!",
+        description: "You can log in and make purchases.",
         status: "success",
         duration: 4000,
         isClosable: true,
       });
     } catch (e) {
       toast({
-        title: "Ошибка регистрации",
-        description: "Попробуйте заново.",
+        title: "Registration error!",
+        description: "Try again.",
         status: "error",
         duration: 4000,
         isClosable: true,
@@ -48,7 +48,7 @@ const RegisterForm = () => {
     <form>
       <Stack spacing={5}>
         <Stack spacing={2}>
-          <Text>Почта</Text>
+          <Text>Email</Text>
           <Input
             placeholder="example@gmail.com"
             type="email"
@@ -57,7 +57,7 @@ const RegisterForm = () => {
           />
         </Stack>
         <Stack spacing={2}>
-          <Text>Пароль</Text>
+          <Text>Password</Text>
           <Input type="password" value={password} onInput={onInputPassword} />
         </Stack>
         <Button
@@ -65,7 +65,7 @@ const RegisterForm = () => {
           onClick={onSubmitRegister}
           isLoading={registerReqState.isLoading}
         >
-          Зарегистрироваться
+          Register
         </Button>
       </Stack>
     </form>

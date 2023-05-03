@@ -15,15 +15,15 @@ const AuthPage = () => {
     <div
       style={{ height: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}
     >
-      <Container maxW="2xl" centerContent>
+      <Container centerContent>
         <SimpleGrid autoRows={true} rowGap={5}>
-          <Heading as={"h5"} size={"lg"}>
-            Страница авторизации
+          <Heading as={"h5"} size={"lg"} textAlign={"center"}>
+            Auth Page
           </Heading>
           <Tabs variant="soft-rounded" colorScheme="green" size={"lg"}>
             <TabList>
-              <Tab>Авторизация</Tab>
-              <Tab>Регистрация</Tab>
+              <Tab>Sign In</Tab>
+              <Tab>Register</Tab>
             </TabList>
             <TabPanels>
               <TabPanel>
